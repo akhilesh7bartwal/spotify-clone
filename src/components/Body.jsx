@@ -5,7 +5,7 @@ import { useStateProvider } from "../utils/StateProvider";
 import axios from "axios";
 import { reducerCases } from "../utils/Constants";
 
-const Body = ({headerBackground}) => {
+const Body = ({ headerBackground }) => {
   const [{ token, selectedPlaylist, selectedPlaylistId }, dispatch] =
     useStateProvider();
 
@@ -45,11 +45,11 @@ const Body = ({headerBackground}) => {
     getInitialPlaylist();
   }, [token, dispatch, selectedPlaylistId]);
 
-  const msToMinutesAndSeconds = (ms) =>{
-    const minute = Math.floor(ms/60000);
+  const msToMinutesAndSeconds = (ms) => {
+    const minute = Math.floor(ms / 60000);
     const second = ((ms % 60000) / 1000).toFixed(0);
-    return minute + ':' + (second < 10 ? '0' : '')+ second;
-  }
+    return minute + ":" + (second < 10 ? "0" : "") + second;
+  };
 
   return (
     <Container headerBackground={headerBackground}>
@@ -142,60 +142,60 @@ const Container = styled.div`
         box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
       }
     }
-    .details{
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-        color: #e0dede;
-        .title{
-            color: white;
-            font-size: 4rem;
-        }
+    .details {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      color: #e0dede;
+      .title {
+        color: white;
+        font-size: 4rem;
+      }
     }
   }
-  .list{
-    .header__row{
+  .list {
+    .header__row {
+      display: grid;
+      grid-template-columns: 0.3fr 3fr 2fr 0.1fr;
+      color: #dddcdc;
+      margin: 1rem 0 0 0;
+      position: sticky;
+      top: 15vh;
+      padding: 1rem 3rem;
+      transition: 0.3s ease-in-out;
+      background-color: ${({ headerBackground }) =>
+        headerBackground ? "#000000dc" : "none"};
+    }
+    .tracks {
+      margin: 0 2rem;
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 5rem;
+      .row {
+        padding: 0.5rem 1rem;
         display: grid;
-        grid-template-columns: 0.3fr 3fr 2fr 0.1fr;
-        color: #dddcdc;
-        margin: 1rem 0 0 0;
-        position: sticky;
-        top: 15vh;
-        padding: 1rem 3rem;      
-        transition: 0.3s ease-in-out;  
-        background-color: ${({headerBackground}) => headerBackground ? '#000000dc': 'none'}
-    }
-    .tracks{
-        margin: 0 2rem;
-        display: flex;
-        flex-direction: column;
-        margin-bottom: 5rem;
-        .row{
-            padding: 0.5rem 1rem;
-            display: grid;
-            grid-template-columns: 0.3fr 3.1fr 1.9fr 0.1fr;
-            &:hover{
-                background-color: rgba(0, 0, 0, 0.7);
-            }                        
-            .col{
-                display: flex;
-                align-items: center;
-                color: #dddcdc;
-                img{
-                    height: 40px;
-                }                
-            }
-            .detail{
-                display: flex;
-                gap: 1rem;
-                .info{
-                    display: flex;
-                    flex-direction: column;
-                }
-            }
+        grid-template-columns: 0.3fr 3.1fr 1.9fr 0.1fr;
+        &:hover {
+          background-color: rgba(0, 0, 0, 0.7);
         }
+        .col {
+          display: flex;
+          align-items: center;
+          color: #dddcdc;
+          img {
+            height: 40px;
+          }
+        }
+        .detail {
+          display: flex;
+          gap: 1rem;
+          .info {
+            display: flex;
+            flex-direction: column;
+          }
+        }
+      }
     }
-
   }
 `;
 
